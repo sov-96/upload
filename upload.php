@@ -1,10 +1,5 @@
 <?php
-
-// начиная с версии PHP 5.3.0 можно использовать безымянные функции
-spl_autoload_register(function ($class) {
-    include 'class/' . $class . '.php';
-});
-
+require_once('auto.php');
 
 
 $cdb= "mysql:host=127.0.0.1;dbname=upload;charset=utf8";
@@ -39,6 +34,8 @@ if(isset($_FILES['upl']) && $_FILES['upl']['error'] == 0){
 
 
         $art = c_article::parse($lines);
+		$name=pathinfo($_FILES['upl']['name'], PATHINFO_FILENAME);
+		$art ->filename=$name;
         if($art -> save( $pdo))
 		    echo '{"status":"success"}';
         else
