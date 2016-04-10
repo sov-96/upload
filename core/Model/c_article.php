@@ -6,10 +6,13 @@
  * Date: 17.03.2016
  * Time: 21:07
  */
-namespace core\Model;
-class c_article
-{
 
+namespace core\Model;
+use core\Model;
+class c_article extends Model
+{
+    const TABLE = 'advertising';
+    const FK='id';
     public $title;
     public $summary;
     public $keywords;
@@ -27,7 +30,7 @@ class c_article
             $q->bindValue(':title', $this->title);
             $q->bindValue(':summary', $this->summary);
             $q->bindValue(':keywords', $this->keywords);
-            $q->bindValue(':artbody',iconv('WINDOWS-1251', 'UTF-8', $this->artbody), PDO::PARAM_STR);
+            $q->bindValue(':artbody',iconv('WINDOWS-1251', 'UTF-8', $this->artbody), \PDO::PARAM_STR);
 
             $q->bindValue(':filename', $this->filename);
             echo $this->artbody;

@@ -1,7 +1,53 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: Seyda
- * Date: 28.03.2016
- * Time: 19:20
- */
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8"/>
+		<title>Mini Ajax File Upload Form</title>
+
+		<!-- Google web fonts -->
+		<link href="http://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700" rel='stylesheet' />
+
+		<!-- The main CSS file -->
+		<link href="css/style.css" rel="stylesheet" />
+	</head>
+
+	<body>
+
+		<form id="upload" method="post" action="upload.php" enctype="multipart/form-data">
+			<div id="drop">
+    Drop Here
+
+<a>Browse</a>
+				<input type="file" name="upl" multiple />
+			</div>
+
+			<ul>
+				<!-- The file uploads will be shown here -->
+			</ul>
+
+		</form>
+
+		<footer>
+            <h2><a href="http://tutorialzine.com/2013/05/mini-ajax-file-upload-form/"><i>Tutorial:</i> Mini Ajax File Upload Form</a></h2>
+            <div id="tzine-actions">
+
+            </div>
+        </footer>
+
+		<!-- JavaScript Includes -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<script src="js/jquery.knob.js"></script>
+
+		<!-- jQuery File Upload Dependencies -->
+		<script src="js/jquery.ui.widget.js"></script>
+		<script src="js/jquery.iframe-transport.js"></script>
+		<script src="js/jquery.fileupload.js"></script>
+
+		<!-- Our main JS file -->
+		<script src="js/script.js"></script>
+
+
+
+	</body>
+</html>

@@ -1,6 +1,7 @@
 <?
 namespace core\Tools;
-class tools
+
+class ctools
 {
     public static function filedel($filename)
     {
@@ -11,13 +12,13 @@ class tools
 
 
         $opt = array(
-            PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
-            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+            \PDO::ATTR_ERRMODE            => \PDO::ERRMODE_EXCEPTION,
+            \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC
         );
 
         try
         {
-            $pdo = new PDO($cdb, 'upload', '123', $opt);
+            $pdo = new \PDO($cdb, 'upload', '123', $opt);
         }
         catch (PDOException $e)
         {
@@ -25,11 +26,11 @@ class tools
         }
         return $pdo;
     }
-    public function doSql($cdb, $sql)
+    public static function doSql($cdb, $sql)
     {
-
+        $x=[];
             $i=0;
-            $pdo = tools::initMySqlCon($cdb);
+            $pdo = static::initMySqlCon($cdb);
         $stmt = $pdo->query($sql);
         while ($row = $stmt->fetch())
         {
@@ -38,4 +39,5 @@ class tools
         }
         return $x;
     }
+
 }

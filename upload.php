@@ -1,4 +1,5 @@
 <?php
+namespace core\Model;
 require_once('auto.php');
 
 
@@ -27,9 +28,9 @@ if(isset($_FILES['upl']) && $_FILES['upl']['error'] == 0){
 			$lines[]=fgets($myfile);
 		}
 		fclose($myfile);
-        tools::filedel('uploads/'.$_FILES['upl']['name']);
+		\core\Tools\ctools::filedel('uploads/'.$_FILES['upl']['name']);
 
-        $pdo = tools::initMySqlCon($cdb);
+        $pdo =\core\Tools\ctools::initMySqlCon($cdb);
 
 
 

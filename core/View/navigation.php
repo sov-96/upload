@@ -1,22 +1,30 @@
 <?
 namespace core\View;
+//use core\Tools\tools;
+use core\Model\c_article;
+
 class navigation
 {
+    public static $out;
+    /*
     public static function getlast()
     {
         $cdb= "mysql:host=127.0.0.1;dbname=upload;charset=utf8";
         $sql="SELECT * FROM advertising ORDER BY id DESC LIMIT 0,10";
-        $res = tools :: doSql($cdb, $sql);
+        $res = \core\Tools\ctools :: doSql($cdb, $sql);
         return $res;
     }
+    */
 
     public static  function  navigator($page, $num, $tbname, $cdb)
     {
         if ($page==0) $page=1;
         //$cdb= "mysql:host=127.0.0.1;dbname=upload;charset=utf8";
-        $sql="SELECT count(`id`) FROM `$tbname`";
-        $res = tools :: doSql($cdb, $sql);
-        $posts = $res[0]['count(`id`)'];
+        //$sql="SELECT count(`id`) FROM `$tbname`";
+        //$res = \core\Tools\ctools :: doSql($cdb, $sql);
+
+        $row = $q[0];
+        $posts=$row['countfield'];
 
 // Находим общее число страниц
         $total = intval(($posts - 1) / $num) + 1;
@@ -43,21 +51,22 @@ class navigation
         if($page + 2 <= $total) $page2right = '  <a href="/?page='. ($page + 2).'">'. ($page + 2) .'</a>';
         if($page + 1 <= $total) $page1right = '  <a href="/?page='. ($page + 1).'">'. ($page + 1) .'</a>';
 
-//получаем записи из БД (начиная с $start, кол-во записей = $num)
 
-        $query = "SELECT * FROM `$tbname` LIMIT $start, $num";
-        $out = tools :: doSql($cdb, $query);
-        echo " <a href='http://upload2.com/uplpage'>Загрузить файл</a><br>";
-        foreach($out as $value)
-        {
-            ?><a href='http://upload2.com/pages/<?echo $value['filename'];?>'><?echo $value['title'];?></a><br><?
 
-            //echo $value['title'];
-        }
 
-        if ($total>1) echo '<p><div align="center" class="navigation">'
-            .$pervpage.$page2left.$page1left.'<span>'.$page.'</span>'.$page1right.$page2right
-            .$nextpage.'</div></p>';
+        //$res=[];
+        //print_r($out);
+        $res['out']=$out;
+        $res['pervpage']=$pervpage;
+        $res['page2left']=$page2left;
+        $res['page1left']=$page1left;
+        $res['page1right']=$page1right;
+        $res['page2right']=$page2right;
+        $res['page']=$page;
+        $res['nextpage']=$nextpage;
+        $res['total']=$total;
+        return $res;
+
     }
 }
 
